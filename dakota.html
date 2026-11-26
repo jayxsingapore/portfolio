@@ -234,6 +234,10 @@ nav {
 .row-nine { grid-template-columns: 1.37fr 1fr; }
 /* single bottle (1380x1536) beside AR phone (974x1246) at equal height */
 .row-ar { grid-template-columns: 1.148fr 1fr; }
+/* radio drawing (676x924), bottle (10x11), map wrap (10x11) at equal height */
+.row-3 { grid-template-columns: 0.732fr 0.909fr 0.909fr; }
+/* nine coasters (815x813) beside coaster pair (1600x1103) at equal height */
+.row-np { grid-template-columns: 1fr 1.45fr; }
 
 .grid-img {
   overflow: hidden; background: var(--surface);
@@ -379,7 +383,7 @@ nav {
   .proj-intro.tight { padding: 72px 0 40px; }
   .mark-section, .statement-section { padding: 80px 0; }
   .grid-section { padding-bottom: 72px; }
-  .row-2, .row-nine, .row-ar { grid-template-columns: 1fr; }
+  .row-2, .row-nine, .row-ar, .row-3, .row-np { grid-template-columns: 1fr; }
   .grid-img.fill { aspect-ratio: 676 / 924; }
   .next-project { flex-direction: column; align-items: flex-start; padding: 80px 24px; }
   .lb-close { right: 24px; }
@@ -519,7 +523,11 @@ nav {
         <span class="img-caption">The Limited Edition case</span>
       </div>
     </div>
-    <div class="img-grid row-2 reveal d1">
+    <div class="img-grid row-3 reveal d1">
+      <div class="grid-img paper" tabindex="0" data-gallery="main" data-src="images/dakota-radio-drawing.jpg" style="aspect-ratio:676/924">
+        <img src="images/dakota-radio-drawing.jpg" alt="Technical drawing of the bespoke radio fascia, 225 by 120 millimetres, and exploded view of the case lid" loading="lazy">
+        <span class="img-caption">Radio fascia and technical drawing</span>
+      </div>
       <div class="grid-img" tabindex="0" data-gallery="main" data-src="images/dakota-bottle-glass.jpg" style="aspect-ratio:10/11">
         <img src="images/dakota-bottle-glass.jpg" alt="Dakota Cabernet Merlot 2012 in its paper wrap beside the bottle and crystal glass" loading="lazy">
         <span class="img-caption">Peccavi Red and the commemorative glass</span>
@@ -549,17 +557,11 @@ nav {
   </div>
 
   <div class="grid-section">
-    <div class="img-grid row-nine reveal">
+    <div class="img-grid row-np reveal">
       <div class="grid-img paper" tabindex="0" data-gallery="main" data-src="images/dakota-coasters-nine.jpg" style="aspect-ratio:815/813">
         <img src="images/dakota-coasters-nine.jpg" alt="Nine individually illustrated, AR-enabled Dakota coasters" loading="lazy">
         <span class="img-caption">Nine illustrated, AR-enabled coasters</span>
       </div>
-      <div class="grid-img paper fill" tabindex="0" data-gallery="main" data-src="images/dakota-radio-drawing.jpg">
-        <img src="images/dakota-radio-drawing.jpg" alt="Technical drawing of the bespoke radio fascia, 225 by 120 millimetres, and exploded view of the case lid" loading="lazy">
-        <span class="img-caption">Radio fascia and technical drawing</span>
-      </div>
-    </div>
-    <div class="img-grid row-full reveal d1">
       <div class="grid-img paper" tabindex="0" data-gallery="main" data-src="images/dakota-coasters-pair.jpg" style="aspect-ratio:1600/1103">
         <img src="images/dakota-coasters-pair.jpg" alt="Dakota coaster, reverse with logo and front with illustrated pilot portrait" loading="lazy">
         <span class="img-caption">Coaster, reverse and front</span>
