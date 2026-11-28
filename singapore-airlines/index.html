@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Singapore Airlines, Brand Transformation · Sanjay</title>
+<meta name="description" content="Singapore Airlines: a future-facing visual identity, brand guidelines, the new batik, the F1 trophy and the Bearie character for young passengers.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter+Tight:wght@300;400;500;600&family=Inter:wght@300;400;500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ─── RESET & BASE ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+:root {
+  --bg:       #0D0D0D;
+  --surface:  #161616;
+  --border:   #2A2A2A;
+  --text:     #F0EDE8;
+  --muted:    #8A8680;
+  --accent:   #C8D400;
+  --accent-h: #D4E000;
+  --paper:    rgb(233, 229, 220);
+  --serif:    'Playfair Display', Georgia, serif;
+  --tight:    'Inter Tight', 'Helvetica Neue', sans-serif;
+  --body:     'Inter', 'Helvetica Neue', sans-serif;
+  --mono:     'DM Mono', 'Courier New', monospace;
+  --ease:     cubic-bezier(0.16, 1, 0.3, 1);
+  --nav-h:    72px;
+  --gutter:   60px;
+  --max:      1280px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--body);
+  line-height: 1.6;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+a { text-decoration: none; color: inherit; }
+img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* ─── CURSOR ─── */
+#cur {
+  position: fixed; width: 10px; height: 10px;
+  border-radius: 50%; background: var(--accent);
+  pointer-events: none; z-index: 9999;
+  transform: translate(-50%,-50%);
+  transition: width .2s var(--ease), height .2s var(--ease);
+  mix-blend-mode: difference;
+}
+#cur.big { width: 44px; height: 44px; }
+#cur-ring {
+  position: fixed; width: 38px; height: 38px;
+  border: 1px solid var(--accent); border-radius: 50%;
+  pointer-events: none; z-index: 9998;
+  transform: translate(-50%,-50%); opacity: .45;
+}
+
+/* ─── PAGE WIPE ─── */
+#wipe {
+  position: fixed; inset: 0; background: var(--bg);
+  z-index: 9990; transform-origin: top;
+  animation: wipeOut .9s var(--ease) .1s forwards;
+  pointer-events: none;
+}
+@keyframes wipeOut { to { transform: scaleY(0); } }
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 500; height: var(--nav-h);
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--gutter);
+  background: rgba(22,22,22,.92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: var(--mono); font-size: 12px;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--text);
+}
+.nav-logo span { color: var(--accent); }
+.nav-back {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: .16em; text-transform: uppercase;
+  color: var(--muted);
+  transition: color .2s;
+}
+.nav-back:hover { color: var(--accent); }
+.nav-back svg { width: 14px; height: 14px; }
+
+/* ─── REVEAL ─── */
+.reveal {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity .7s var(--ease), transform .7s var(--ease);
+}
+.reveal.in { opacity: 1; transform: none; }
+.d1 { transition-delay: .1s; }
+.d2 { transition-delay: .2s; }
+.d3 { transition-delay: .3s; }
+.d4 { transition-delay: .4s; }
+
+/* ─── LABEL ─── */
+.label {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--muted); display: flex; align-items: center; gap: 14px;
+}
+.label::before {
+  content: ''; display: inline-block;
+  width: 28px; height: 1px; background: var(--accent); flex-shrink: 0;
+}
+
+/* ─── HERO ─── */
+.proj-hero {
+  padding-top: var(--nav-h);
+  position: relative; overflow: hidden;
+}
+.hero-img-wrap {
+  width: 100%; height: 90vh; position: relative;
+}
+.hero-img-wrap img {
+  width: 100%; height: 100%; object-fit: cover;
+  object-position: center 40%;
+  filter: brightness(.9);
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(13,13,13,.85) 0%, transparent 55%);
+}
+.hero-content {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 60px var(--gutter);
+}
+.hero-client {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 16px;
+}
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(36px, 6vw, 88px);
+  font-weight: 400; letter-spacing: -.03em; line-height: .95;
+  max-width: 800px;
+}
+
+/* ─── META BAR ─── */
+.meta-bar {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.meta-cell {
+  background: var(--surface); padding: 28px 32px;
+}
+.meta-label {
+  font-family: var(--mono); font-size: 9px;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 8px;
+}
+.meta-value {
+  font-family: var(--tight); font-size: 14px;
+  font-weight: 500; color: var(--text);
+}
+
+/* ─── BODY CONTENT ─── */
+.proj-body {
+  max-width: var(--max); margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* Two column text blocks */
+.proj-intro {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; padding: 120px 0;
+  border-bottom: 1px solid var(--border);
+}
+.intro-heading {
+  font-family: var(--serif);
+  font-size: clamp(28px, 3vw, 44px);
+  font-weight: 400; letter-spacing: -.02em;
+  line-height: 1.15;
+}
+.intro-heading em { font-style: italic; color: var(--accent); }
+.intro-text {
+  font-size: 16px; line-height: 1.85;
+  color: var(--muted); padding-top: 8px;
+}
+.intro-text p + p { margin-top: 18px; }
+.intro-text strong { color: var(--text); font-weight: 500; }
+.intro-sub {
+  margin-top: 36px; padding-top: 28px;
+  border-top: 1px solid var(--border);
+}
+.intro-sub .label { margin-bottom: 16px; }
+
+/* Text block that sits above an image grid */
+.proj-intro.tight { padding: 100px 0 64px; border-bottom: none; }
+
+/* Logo note */
+.mark-section {
+  padding: 120px 0;
+  border-bottom: 1px solid var(--border);
+}
+.mark-text {
+  font-family: var(--serif);
+  font-size: clamp(26px, 3.2vw, 46px);
+  font-weight: 400; letter-spacing: -.02em;
+  line-height: 1.22; max-width: 980px;
+  margin-top: 40px;
+}
+.mark-text em { font-style: italic; color: var(--accent); }
+
+/* ─── IMAGE GRID ─── */
+.grid-section {
+  padding: 0 0 100px;
+  border-bottom: 1px solid var(--border);
+}
+.img-grid { display: grid; gap: 3px; }
+.img-grid + .img-grid { margin-top: 3px; }
+
+.row-2 { grid-template-columns: 1fr 1fr; }
+.row-full { grid-template-columns: 1fr; }
+/* column ratio matches the two image aspect ratios so both sit at the same height */
+.row-nine { grid-template-columns: 1.37fr 1fr; }
+/* single bottle (1380x1536) beside AR phone (974x1246) at equal height */
+.row-ar { grid-template-columns: 1.148fr 1fr; }
+/* radio drawing (676x924), bottle (10x11), map wrap (10x11) at equal height */
+.row-3 { grid-template-columns: 0.732fr 0.909fr 0.909fr; }
+/* nine coasters (815x813) beside coaster pair (1600x1103) at equal height */
+.row-np { grid-template-columns: 1fr 1.45fr; }
+
+.grid-img {
+  overflow: hidden; background: var(--surface);
+  position: relative; cursor: zoom-in;
+}
+.grid-img.paper { background: var(--paper); }
+.grid-img.fill img {
+  position: absolute; inset: 0;
+  object-fit: contain;
+}
+.grid-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform .8s var(--ease);
+}
+.grid-img:hover img { transform: scale(1.03); }
+
+.img-caption {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 14px 18px;
+  background: linear-gradient(to top, rgba(13,13,13,.85) 0%, transparent 100%);
+  font-family: var(--mono); font-size: 9px;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: rgba(240,237,232,.8);
+  opacity: 0; transition: opacity .3s;
+}
+.grid-img:hover .img-caption,
+.grid-img:focus-visible .img-caption { opacity: 1; }
+.grid-img:focus-visible { outline: 1px solid var(--accent); outline-offset: -1px; }
+
+/* ─── CLOSING STATEMENT ─── */
+.statement-section {
+  padding: 140px 0;
+  border-bottom: 1px solid var(--border);
+}
+.statement {
+  font-family: var(--serif);
+  font-size: clamp(44px, 8vw, 120px);
+  font-weight: 400; letter-spacing: -.035em;
+  line-height: .98; margin-top: 40px;
+}
+.statement em { font-style: italic; color: var(--accent); }
+.statement.sm { font-size: clamp(32px, 5.4vw, 80px); }
+
+/* Imperial Health: design evolution columns */
+.evo {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+  background: var(--border); border: 1px solid var(--border);
+  margin: 0 0 100px;
+}
+.evo-col { background: var(--surface); padding: 40px 36px 44px; }
+.evo-col .label { margin-bottom: 26px; color: var(--text); }
+.evo-col ul { list-style: none; }
+.evo-col li {
+  position: relative; padding-left: 18px;
+  font-size: 15px; line-height: 1.65; color: var(--muted);
+}
+.evo-col li + li { margin-top: 12px; }
+.evo-col li::before {
+  content: ''; position: absolute; left: 0; top: .78em;
+  width: 8px; height: 1px; background: var(--accent);
+}
+
+/* Before / after tag on an image */
+.tag {
+  position: absolute; top: 18px; left: 18px; z-index: 2;
+  font-family: var(--mono); font-size: 9px; letter-spacing: .18em;
+  text-transform: uppercase; padding: 7px 12px;
+  background: rgba(13,13,13,.78); color: var(--text);
+  border: 1px solid var(--border);
+}
+.tag.after { background: var(--accent); color: #0D0D0D; border-color: var(--accent); }
+
+/* mask pouch (1477x1988) beside lotion and box (square) at equal height */
+.row-ml { grid-template-columns: 0.743fr 1fr; }
+
+/* Blackmores: four-step AR flow */
+.evo.four { grid-template-columns: repeat(4, 1fr); }
+.step-no {
+  font-family: var(--serif); font-style: italic;
+  font-size: 44px; line-height: 1; color: var(--accent);
+  margin-bottom: 22px; letter-spacing: -.03em;
+}
+.evo-col h3 {
+  font-family: var(--tight); font-size: 13px; font-weight: 600;
+  letter-spacing: .12em; text-transform: uppercase; margin-bottom: 12px;
+}
+.evo-col p { font-size: 15px; line-height: 1.65; color: var(--muted); }
+
+/* NASUWT: staff ID (1600x1200) beside mugs (1365x911) at equal height */
+.row-id { grid-template-columns: 1.333fr 1.498fr; }
+.grid-img.mult img { mix-blend-mode: multiply; }
+
+/* Singapore Airlines */
+.evo.five { grid-template-columns: repeat(5, 1fr); }
+a.evo-col { display: block; transition: background .25s; }
+a.evo-col:hover { background: #1c1c1c; }
+.row-bt { grid-template-columns: 1.786fr .775fr; }
+.row-pg { grid-template-columns: .604fr 1fr; }
+.grid-img.yel { background: #ffe900; }
+
+/* Part divider */
+.part-divider {
+  padding: 120px 0 0;
+}
+.part-no {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(64px, 11vw, 160px);
+  letter-spacing: -.04em; line-height: .9;
+  color: var(--accent); margin-top: 28px;
+}
+
+/* ─── NEXT PROJECT ─── */
+.next-link { display: block; border-top: 1px solid var(--border); }
+.next-project {
+  padding: 120px var(--gutter);
+  display: flex; justify-content: space-between;
+  align-items: center; gap: 40px;
+}
+.next-label {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: .18em; text-transform: uppercase; color: var(--muted);
+  margin-bottom: 16px;
+}
+.next-title {
+  font-family: var(--serif);
+  font-size: clamp(28px, 4vw, 60px);
+  font-weight: 400; letter-spacing: -.03em;
+  transition: color .25s;
+}
+.next-link:hover .next-title { color: var(--accent); }
+.next-arrow {
+  width: 72px; height: 72px; flex-shrink: 0;
+  border: 1px solid var(--border); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color .25s, transform .4s var(--ease);
+}
+.next-link:hover .next-arrow {
+  border-color: var(--accent); transform: translateX(8px);
+}
+.next-arrow svg { width: 20px; height: 20px; }
+
+/* ─── LIGHTBOX ─── */
+#lightbox {
+  position: fixed; inset: 0; z-index: 9800;
+  background: rgba(13,13,13,.96);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity .35s var(--ease);
+}
+#lightbox.open { opacity: 1; pointer-events: all; }
+.lb-img-wrap { max-width: 90vw; max-height: 90vh; position: relative; }
+.lb-img-wrap img {
+  max-width: 90vw; max-height: 90vh;
+  width: auto; height: auto; object-fit: contain;
+  transform: scale(.95);
+  transition: transform .4s var(--ease);
+}
+#lightbox.open .lb-img-wrap img { transform: scale(1); }
+.lb-close {
+  position: fixed; top: 28px; right: 40px;
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--muted); cursor: pointer;
+  transition: color .2s;
+}
+.lb-close:hover { color: var(--accent); }
+.lb-nav {
+  position: fixed; top: 50%; transform: translateY(-50%);
+  display: flex; justify-content: space-between;
+  width: 100%; padding: 0 24px; pointer-events: none;
+}
+.lb-btn {
+  pointer-events: all;
+  width: 52px; height: 52px;
+  border: 1px solid var(--border); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; background: transparent; color: var(--text);
+  transition: border-color .2s, background .2s, color .2s;
+}
+.lb-btn:hover { border-color: var(--accent); background: var(--accent); color: var(--bg); }
+.lb-btn svg { width: 16px; height: 16px; }
+.lb-counter {
+  position: fixed; bottom: 28px; left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: .18em; color: var(--muted);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1024px) {
+  .meta-bar { grid-template-columns: repeat(2, 1fr); }
+  .evo.four, .evo.five { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .part-divider { padding-top: 80px; }
+  :root { --gutter: 24px; }
+  nav { padding: 0 24px; }
+  .hero-img-wrap { height: 62vh; }
+  .meta-cell { padding: 22px 24px; }
+  .proj-intro { grid-template-columns: 1fr; gap: 32px; padding: 80px 0; }
+  .proj-intro.tight { padding: 72px 0 40px; }
+  .mark-section, .statement-section { padding: 80px 0; }
+  .grid-section { padding-bottom: 72px; }
+  .row-2, .row-nine, .row-ar, .row-3, .row-np, .row-ml, .row-id, .row-bt, .row-pg { grid-template-columns: 1fr; }
+  .evo, .evo.four, .evo.five { grid-template-columns: 1fr; }
+  .evo-col { padding: 32px 24px 36px; }
+  .grid-img.fill { aspect-ratio: 676 / 924; }
+  .next-project { flex-direction: column; align-items: flex-start; padding: 80px 24px; }
+  .lb-close { right: 24px; }
+  body { cursor: auto; }
+  #cur, #cur-ring { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  #wipe { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div id="wipe"></div>
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <div class="lb-close" id="lbClose" tabindex="0">Close &times;</div>
+  <div class="lb-img-wrap">
+    <img id="lbImg" alt="">
+  </div>
+  <div class="lb-nav">
+    <button class="lb-btn" id="lbPrev" aria-label="Previous image">
+      <svg viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="lb-btn" id="lbNext" aria-label="Next image">
+      <svg viewBox="0 0 16 16" fill="none"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+  <div class="lb-counter" id="lbCounter">1 / 9</div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="../index.html" class="nav-logo">S<span>anjay</span></a>
+  <a href="../index.html#work" class="nav-back">
+    <svg viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Back to work
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="proj-hero">
+  <div class="hero-img-wrap">
+    <img src="sia-hero.jpg" alt="Singapore Airlines Airbus A380 in flight above the clouds">
+    <div class="hero-overlay"></div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-client">Singapore Airlines · Brand Transformation</p>
+    <h1 class="hero-title">Reimagining<br>an Icon</h1>
+  </div>
+</section>
+
+<!-- META BAR -->
+<div class="meta-bar">
+  <div class="meta-cell"><p class="meta-label">Client</p><p class="meta-value">Singapore Airlines</p></div>
+  <div class="meta-cell"><p class="meta-label">Agency</p><p class="meta-value">TBWA\ Singapore</p></div>
+  <div class="meta-cell"><p class="meta-label">Market</p><p class="meta-value">Singapore · Global</p></div>
+  <div class="meta-cell"><p class="meta-label">Role</p><p class="meta-value">Head of Design</p></div>
+  <div class="meta-cell"><p class="meta-label">Scope</p><p class="meta-value">Brand Identity, Visual Systems, Product Concepts, Integrated Digital Experiences</p></div>
+  <div class="meta-cell"><p class="meta-label">Type</p><p class="meta-value">Agency project</p></div>
+</div>
+
+<!-- BODY -->
+<div class="proj-body">
+
+  <div class="proj-intro">
+    <div class="reveal">
+      <div class="label" style="margin-bottom:28px">The brief</div>
+      <h2 class="intro-heading">Reimagining an<br>iconic global <em>brand.</em></h2>
+    </div>
+    <div class="reveal d1">
+      <div class="intro-text">
+        <p><strong>Reimagining an iconic global brand through contemporary design systems.</strong></p>
+        <p>Led creative exploration of a future-facing visual identity for Singapore Airlines, evolving the brand language across identity, product and customer experience. This included reinterpreting core assets such as the batik motif, extending the brand across new product concepts, and defining a cohesive, modern design system.</p>
+        <div class="intro-sub">
+          <div class="label">The impact</div>
+          <p>Elevated brand perception through a cohesive, contemporary visual direction, strengthening consistency, customer experience and future brand scalability.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mark-section">
+    <div class="label reveal">Five pieces of work</div>
+    <div class="evo five reveal d1" style="margin:56px 0 0">
+      <a class="evo-col" href="#p1"><div class="step-no">I</div><h3>Identity &amp; product concepts</h3><p>A future-facing identity, extended across new products.</p></a>
+      <a class="evo-col" href="#p2"><div class="step-no">II</div><h3>Brand guidelines</h3><p>Simplified and modernised, June 2020.</p></a>
+      <a class="evo-col" href="#p3"><div class="step-no">III</div><h3>The new batik</h3><p>A secondary branding device, with its own guidelines.</p></a>
+      <a class="evo-col" href="#p4"><div class="step-no">IV</div><h3>F1 Trophy</h3><p>A sculptural trophy based on the bird symbol.</p></a>
+      <a class="evo-col" href="#p5"><div class="step-no">V</div><h3>Bearie</h3><p>A plush character and interactive meal bags for young passengers.</p></a>
+    </div>
+  </div>
+
+  <div class="part-divider" id="p1">
+    <div class="label reveal">Part I · Identity &amp; product concepts</div>
+  </div>
+
+  <div class="proj-intro tight">
+    <div class="reveal">
+      <h2 class="intro-heading">A new look<br>and <em>feel.</em></h2>
+    </div>
+    <div class="reveal d1">
+      <div class="intro-text">
+        <p>Creative exploration of a new look and feel for the Singapore Airlines brand, ranging from brand identity development and product creation to line extensions, batik rejuvenation and customer experiences.</p>
+      </div>
+    </div>
+  </div>
+  <div class="grid-section">
+    <div class="img-grid row-full reveal">
+      <div class="grid-img paper" tabindex="0" data-gallery="main" data-src="sia-plane.jpg" style="aspect-ratio:1276/644">
+        <img src="sia-plane.jpg" alt="Singapore Airlines A380 with the explored livery" loading="lazy">
+        <span class="img-caption">The explored livery</span>
+      </div>
+    </div>
+    <div class="img-grid row-full reveal d1">
+      <div class="grid-img paper mult" tabindex="0" data-gallery="main" data-src="sia-symbol.jpg" style="aspect-ratio:1600/619">
+        <img src="sia-symbol.jpg" alt="The Singapore Airlines bird symbol: current, previous solid and two refined solid versions" loading="lazy">
+        <span class="img-caption">Symbol exploration: current, previous and refined solid versions</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="proj-intro tight">
+    <div class="reveal">
+      <div class="label" style="margin-bottom:28px">Product concepts</div>
+      <h2 class="intro-heading">The identity,<br>beyond the <em>aircraft.</em></h2>
+    </div>
+    <div class="reveal d1">
+      <div class="intro-text">
+        <p>The refined bird symbol and the rejuvenated batik extended across <strong>new product concepts,</strong> from textiles and amenities to gifting and merchandise.</p>
+      </div>
+    </div>
+  </div>
+  <div class="grid-section">
+    <div class="img-grid row-2 reveal">
+      <div class="grid-img paper" tabindex="0" data-gallery="main" data-src="sia-pillows-a.jpg" style="aspect-ratio:1600/1280">
+        <img src="sia-pillows-a.jpg" alt="Olive green and navy cushions with the gold bird symbol" loading="lazy">
+        <span class="img-caption">Cushions in olive and navy</span>
+      </div>
+      <div class="grid-img paper" tabindex="0" data-gallery="main" data-src="sia-pillows-b.jpg" style="aspect-ratio:1600/1280">
+        <img src="sia-pillows-b.jpg" alt="Terracotta and sage green cushions with the gold bird symbol" loading="lazy">
+        <span class="img-caption">Cushions in terracotta and sage</span>
+      </div>
+    </div>
+    <div class="img-grid row-full reveal d1">
+      <div class="grid-img" tabindex="0" data-gallery="main" data-src="sia-amenities.jpg" style="aspect-ratio:1600/1032">
+        <img src="sia-amenities.jpg" alt="Amenity range in white and navy" loading="lazy">
+        <span class="img-caption">Amenities</span>
+      </div>
+    </div>
+    <div class="img-grid row-full reveal d1">
+      <div class="grid-img" tabindex="0" data-gallery="main" data-src="sia-biscuits.jpg" style="aspect-ratio:1597/1043">
+        <img src="sia-biscuits.jpg" alt="Three biscuit tins wrapped in the new batik" loading="lazy">
+        <span class="img-caption">Around-the-world biscuit tins in the new batik</span>
+      </div>
+    </div>
+    <div class="img-grid row-bt reveal d1">
+      <div class="grid-img" tabindex="0" data-gallery="main" data-src="sia-bottles.jpg" style="aspect-ratio:1600/896">
+        <img src="sia-bottles.jpg" alt="Bottles decorated with the new batik" loading="lazy">
+        <span class="img-caption">Bottles in the new batik</span>
+      </div>
+      <div class="grid-img" tabindex="0" data-gallery="main" data-src="sia-tote.jpg" style="aspect-ratio:1240/1600">
+        <img src="sia-tote.jpg" alt="Pink canvas tote bag with the gold bird symbol" loading="lazy">
+        <span class="img-caption">Tote bag</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="part-divider" id="p2">
+    <div class="label reveal">Part II · Brand guidelines</div>
+  </div>
+
+  <div class="proj-intro tight">
+    <div class="reveal">
+      <h2 class="intro-heading">Simplified,<br><em>modernised.</em></h2>
+    </div>
+    <div class="reveal d1">
+      <div class="intro-text">
+        <p>Brand development brought about changes to the brand assets, so the brand guidelines were <strong>simplified and modernised,</strong> introducing the new batik motifs.</p>
+      </div>
+    </div>
+  </div>
+  <div class="grid-section">
+    <div class="img-grid row-full reveal">
+      <div class="grid-img" tabindex="0" data-gallery="main" data-src="sia-guidelines.jpg" style="aspect-ratio:1195/955">
+        <img src="sia-guidelines.jpg" alt="Singapore Airlines Brand Guidelines cover, June 2020" loading="lazy">
+        <span class="img-caption">Brand Guidelines, June 2020</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="part-divider" id="p3">
+    <div class="label reveal">Part III · The new batik</div>
+  </div>
+
+  <div class="proj-intro tight">
+    <div class="reveal">
+      <h2 class="intro-heading">A secondary<br>branding <em>device.</em></h2>
+    </div>
+    <div class="reveal d1">
+      <div class="intro-text">
+        <p>With the new batik assets, new guidelines were created. They allowed the batik to expand across <strong>multiple merchandise and premiums,</strong> and into flight cabins.</p>
+      </div>
+    </div>
+  </div>
+  <div class="grid-section">
+    <div class="img-grid row-full reveal">
+      <div class="grid-img" tabindex="0" data-gallery="main" data-src="sia-batik.jpg" style="aspect-ratio:1195/955">
+        <img src="sia-batik.jpg" alt="The New Batik Guidelines cover" loading="lazy">
+        <span class="img-caption">The New Batik Guidelines</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="part-divider" id="p4">
+    <div class="label reveal">Part IV · F1 Trophy</div>
+  </div>
+
+  <div class="proj-intro tight">
+    <div class="reveal">
+      <h2 class="intro-heading">Power, poise<br>and <em>elegance.</em></h2>
+    </div>
+    <div class="reveal d1">
+      <div class="intro-text">
+        <p><strong>Driven by passion, my love for racing:</strong> the Formula 1 Singapore Airlines F1 Trophy, based on the Singapore Airlines bird symbol.</p>
+        <p>The bird symbol is brought to life in a three-dimensional sculptural form. The three gold stripes echo the three wings of the symbol and are highlighted with gold plating.</p>
+        <p>The rings on the base signify the number of Grands Prix held in Singapore, with a new one added each year. Each trophy is gold plated and milled from solid aircraft-grade aluminium.</p>
+        <div class="intro-sub">
+          <div class="label">Scope</div>
+          <p>3D, concepts, brand, UX, digital and integrated campaigns.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grid-section">
+    <div class="img-grid row-full reveal">
+      <div class="grid-img" tabindex="0" data-gallery="main" data-src="sia-f1-trophy.jpg" style="aspect-ratio:1195/955">
+        <img src="sia-f1-trophy.jpg" alt="The Formula 1 Singapore Airlines trophy" loading="lazy">
+        <span class="img-caption">The F1 trophy</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="part-divider" id="p5">
+    <div class="label reveal">Part V · Bearie</div>
+  </div>
+
+  <div class="proj-intro tight">
+    <div class="reveal">
+      <h2 class="intro-heading">Bringing joy to<br>young <em>travellers.</em></h2>
+    </div>
+    <div class="reveal d1">
+      <div class="intro-text">
+        <p><strong>Bringing joy to young travellers through engaging character design and interactive experiences.</strong></p>
+        <p>The objective was to create kids&rsquo; meal bags to replace the existing plastic ones, and to encourage children to take part in the activities on the bags, like join-the-dots and finding the hidden Bearie. New bags are created each year, with different themes and illustrations. Young local talent was commissioned for all the illustrations and the plush prototype.</p>
+        <p>Bearie is a lovable plush character for Singapore Airlines&rsquo; youngest passengers, alongside a suite of interactive travel bags and companion assets. The project combined 3D character creation, playful storytelling and experiential design to enhance the in-flight journey, creating a memorable, brand-aligned experience that engages children while supporting the airline&rsquo;s family-focused positioning.</p>
+        <div class="intro-sub">
+          <div class="label">Scope</div>
+          <p>3D, concept development, character creation, brand and integrated campaigns.</p>
+        </div>
+        <div class="intro-sub">
+          <div class="label">The impact</div>
+          <p>Enhanced engagement for families, strengthened brand perception, and a differentiated, emotionally resonant travel experience.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grid-section">
+    <div class="img-grid row-full reveal">
+      <div class="grid-img" tabindex="0" data-gallery="main" data-src="bearie-lineup.jpg" style="aspect-ratio:1600/895">
+        <img src="bearie-lineup.jpg" alt="Bearie the plush bear beside four illustrated kids meal bags" loading="lazy">
+        <span class="img-caption">Bearie and the meal bags</span>
+      </div>
+    </div>
+    <div class="img-grid row-2 reveal d1">
+      <div class="grid-img yel" tabindex="0" data-gallery="main" data-src="bearie-bag-spot.jpg" style="aspect-ratio:1/1">
+        <img src="bearie-bag-spot.jpg" alt="Bag illustrated with Singapore landmarks, Spot One Bearie" loading="lazy">
+        <span class="img-caption">Spot One Bearie</span>
+      </div>
+      <div class="grid-img yel" tabindex="0" data-gallery="main" data-src="bearie-bag-scuba.jpg" style="aspect-ratio:1/1">
+        <img src="bearie-bag-scuba.jpg" alt="Blue bag, Bearie’s Scuba Adventure" loading="lazy">
+        <span class="img-caption">Bearie’s Scuba Adventure</span>
+      </div>
+    </div>
+    <div class="img-grid row-2 reveal d1">
+      <div class="grid-img yel" tabindex="0" data-gallery="main" data-src="bearie-bag-holiday.jpg" style="aspect-ratio:1/1">
+        <img src="bearie-bag-holiday.jpg" alt="Green bag, Help Bearie Get to his Holiday" loading="lazy">
+        <span class="img-caption">Help Bearie Get to his Holiday</span>
+      </div>
+      <div class="grid-img yel" tabindex="0" data-gallery="main" data-src="bearie-bag-joindots.jpg" style="aspect-ratio:1/1">
+        <img src="bearie-bag-joindots.jpg" alt="Light blue bag, What in the World is Bearie Up To" loading="lazy">
+        <span class="img-caption">What in the World is Bearie Up To?</span>
+      </div>
+    </div>
+    <div class="img-grid row-pg reveal d1">
+      <div class="grid-img yel" tabindex="0" data-gallery="main" data-src="bearie-plush.jpg" style="aspect-ratio:663/1098">
+        <img src="bearie-plush.jpg" alt="Bearie, a brown felt plush bear in a striped top and cap" loading="lazy">
+        <span class="img-caption">Bearie, the plush</span>
+      </div>
+      <div class="grid-img yel" tabindex="0" data-gallery="main" data-src="sia-card.gif" style="aspect-ratio:1/1">
+        <img src="sia-card.gif" alt="Animation of Bearie peeking into frame" loading="lazy">
+        <span class="img-caption">Bearie says hello</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="statement-section">
+    <div class="label reveal">In short</div>
+    <p class="statement sm reveal d1">An icon,<br><em>reimagined.</em></p>
+  </div>
+
+</div>
+
+<a href="../dakota.html" class="next-link">
+  <div class="next-project reveal">
+    <div>
+      <p class="next-label">Next Project</p>
+      <h2 class="next-title">The Dakota Story<br>Peccavi Wines</h2>
+    </div>
+    <div class="next-arrow">
+      <svg viewBox="0 0 20 20" fill="none"><path d="M4 10H16M10 4L16 10L10 16" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+  </div>
+</a>
+
+<script>
+(function() {
+  'use strict';
+
+  /* cursor */
+  var cur = document.getElementById('cur');
+  var ring = document.getElementById('cur-ring');
+  var mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', function(e) {
+    mx = e.clientX; my = e.clientY;
+    cur.style.left = mx + 'px'; cur.style.top = my + 'px';
+  });
+  (function animRing() {
+    rx += (mx - rx) * 0.13; ry += (my - ry) * 0.13;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(animRing);
+  })();
+  document.querySelectorAll('a, button, .grid-img, .lb-close').forEach(function(el) {
+    el.addEventListener('mouseenter', function() { cur.classList.add('big'); });
+    el.addEventListener('mouseleave', function() { cur.classList.remove('big'); });
+  });
+
+  /* scroll reveal */
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(function(el) { io.observe(el); });
+
+  /* lightbox */
+  var lb = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lbImg');
+  var lbCounter = document.getElementById('lbCounter');
+  var imgs = Array.prototype.slice.call(document.querySelectorAll('[data-gallery="main"]'));
+  var current = 0;
+
+  function show(index) {
+    current = (index + imgs.length) % imgs.length;
+    var el = imgs[current];
+    lbImg.src = el.getAttribute('data-src');
+    lbImg.alt = el.querySelector('img').alt;
+    lbCounter.textContent = (current + 1) + ' / ' + imgs.length;
+  }
+  function openLb(index) {
+    show(index);
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLb() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  imgs.forEach(function(el, i) {
+    el.addEventListener('click', function() { openLb(i); });
+    el.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLb(i); }
+    });
+  });
+  document.getElementById('lbClose').addEventListener('click', closeLb);
+  document.getElementById('lbPrev').addEventListener('click', function() { show(current - 1); });
+  document.getElementById('lbNext').addEventListener('click', function() { show(current + 1); });
+  lb.addEventListener('click', function(e) { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', function(e) {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowRight') show(current + 1);
+    if (e.key === 'ArrowLeft') show(current - 1);
+  });
+})();
+</script>
+</body>
+</html>
